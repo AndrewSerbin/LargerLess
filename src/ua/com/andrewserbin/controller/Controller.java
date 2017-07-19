@@ -28,7 +28,6 @@ public class Controller {
 
         int stepNumber = 0;
         do {
-
             model.setUserValue(inputIntValueWithScanner(sc));
             model.findPosistionAndSetRange();
 
@@ -36,22 +35,20 @@ public class Controller {
             stepNumber++;
 
             switch (model.getPosition()) {
-
                 case Model.LARGER:
-
                     view.printMessage(view.LARGER);
                     break;
-                case Model.LESS:
 
+                case Model.LESS:
                     view.printMessage(view.LESS);
                     break;
-                case Model.EQUALS:
 
+                case Model.EQUALS:
                     view.printMessage(view.EQUALS + view.END_GAME + view.STATISTICS);
                     view.printMessage(model.getStatistics());
                     break;
-                default:
 
+                default:
                     view.printMessage(view.ERROR);
                     break;
             }
@@ -66,23 +63,20 @@ public class Controller {
      * @return user value
      */
     public int inputIntValueWithScanner(Scanner sc) {
-
         view.printMessage(view.RANGE + model.getRange() + view.INPUT_INT_DATA);
 
         int userValue;
         while (true) {
-
             if (sc.hasNextInt()) {
-
                 userValue = sc.nextInt();
-                if (model.checkRange(userValue)) {
 
+                if (model.checkRange(userValue)) {
                     break;
                 }
             } else {
-
                 sc.next();
             }
+
             view.printMessage(view.WRONG_INPUT + view.RANGE + model.getRange() +
                     view.INPUT_INT_DATA);
         }

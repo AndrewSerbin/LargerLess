@@ -29,14 +29,12 @@ public class Model {
     private int position;
 
     public Model() {
-
         randomSelectedValue = rand();
         statistics = new ArrayList<>();
         range = new Range(RAND_MIN, RAND_MAX);
     }
 
     public boolean checkRange(int userValue) {
-
         return range.check(userValue);
     }
 
@@ -46,17 +44,15 @@ public class Model {
      * @return position
      */
     public int findPosistionAndSetRange() {
-
         if (userValue > randomSelectedValue) {
-
             range.setEnd(userValue - 1);
+
             position = LARGER;
         } else if (userValue < randomSelectedValue) {
-
             range.setStart(userValue + 1);
+
             position = LESS;
         } else {
-
             position = EQUALS;
         }
 
@@ -64,7 +60,6 @@ public class Model {
     }
 
     public void addInformationInStatistics(int stepNumber) {
-
         statistics.add(new Step(stepNumber, userValue, position));
     }
 
@@ -73,7 +68,6 @@ public class Model {
      * @return random value
      */
     private int rand() {
-
         return RAND_MIN + (int) (Math.random() * RAND_MAX);
     }
 
@@ -84,7 +78,6 @@ public class Model {
      * @return
      */
     private int rand(int min, int max) {
-
         return min + (int) (Math.random() * max);
     }
 
