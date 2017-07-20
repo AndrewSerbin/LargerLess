@@ -32,7 +32,7 @@ public class Controller {
 
             model.setUserValue(inputIntValueWithScanner(sc));
             model.setStepNumber(stepNumber);
-            model.findPosistionAndSetRange();
+            model.setPosition(model.findPosistionAndSetRange());
 
             model.addInformationInStatistics();
             stepNumber++;

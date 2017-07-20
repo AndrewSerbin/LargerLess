@@ -45,16 +45,14 @@ public class Model {
         if (currentStep.getUserValue() > randomSelectedValue) {
             range.setEnd(currentStep.getUserValue() - 1);
 
-            currentStep.setPosition(POSITION_LARGER);
+            return POSITION_LARGER;
         } else if (currentStep.getUserValue() < randomSelectedValue) {
             range.setStart(currentStep.getUserValue() + 1);
 
-            currentStep.setPosition(POSITION_LESS);
+            return POSITION_LESS;
         } else {
-            currentStep.setPosition(POSITION_EQUALS);
+            return POSITION_EQUALS;
         }
-
-        return currentStep.getPosition();
     }
 
     public void addInformationInStatistics() {
@@ -75,6 +73,10 @@ public class Model {
 
     public int getPosition() {
         return currentStep.getPosition();
+    }
+
+    public void setPosition(int position) {
+        currentStep.setPosition(position);
     }
 
     public void setStepNumber(int stepNumber) {
