@@ -2,16 +2,14 @@ package ua.com.andrewserbin.model;
 
 import ua.com.andrewserbin.model.entities.Range;
 import ua.com.andrewserbin.model.entities.Step;
+import ua.com.andrewserbin.model.utils.RandomGenerator;
+
 import java.util.ArrayList;
 
 /**
  * Created by admin on 18.07.2017.
  */
 public class Model {
-
-    // Constants for rand method and default range values
-    public static final int RAND_MAX = 100;
-    public static final int RAND_MIN = 0;
 
     // Position constants
     public static final int LARGER = 1;
@@ -29,9 +27,9 @@ public class Model {
     private int position;
 
     public Model() {
-        randomSelectedValue = rand();
+        randomSelectedValue = RandomGenerator.rand();
         statistics = new ArrayList<>();
-        range = new Range(RAND_MIN, RAND_MAX);
+        range = new Range(RandomGenerator.RAND_MIN, RandomGenerator.RAND_MAX);
     }
 
     public boolean checkRange(int userValue) {
@@ -61,24 +59,6 @@ public class Model {
 
     public void addInformationInStatistics(int stepNumber) {
         statistics.add(new Step(stepNumber, userValue, position));
-    }
-
-    /**
-     * Generates random value in range from RAND_MIN to RAND_MAX
-     * @return random value
-     */
-    private int rand() {
-        return RAND_MIN + (int) (Math.random() * RAND_MAX);
-    }
-
-    /**
-     * Generates random value in range from min to max
-     * @param min
-     * @param max
-     * @return
-     */
-    private int rand(int min, int max) {
-        return min + (int) (Math.random() * max);
     }
 
     public Range getRange() {
