@@ -38,15 +38,15 @@ public class Controller {
             stepNumber++;
 
             switch (model.getPosition()) {
-                case Model.LARGER:
+                case Model.POSITION_LARGER:
                     view.printMessage(view.LARGER);
                     break;
 
-                case Model.LESS:
+                case Model.POSITION_LESS:
                     view.printMessage(view.LESS);
                     break;
 
-                case Model.EQUALS:
+                case Model.POSITION_EQUALS:
                     view.printMessage(view.EQUALS + view.END_GAME + view.STATISTICS);
                     view.printMessage(model.getStatistics());
                     break;
@@ -55,7 +55,7 @@ public class Controller {
                     view.printMessage(view.ERROR);
                     break;
             }
-        } while (model.getPosition() != model.EQUALS);
+        } while (model.getPosition() != model.POSITION_EQUALS);
     }
 
     /**

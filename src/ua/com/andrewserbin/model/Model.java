@@ -11,10 +11,12 @@ import java.util.ArrayList;
  */
 public class Model {
 
-    // Position constants
-    public static final int LARGER = 1;
-    public static final int EQUALS = 0;
-    public static final int LESS = -1;
+    public static final int POSITION_LARGER = 1;
+    public static final int POSITION_EQUALS = 0;
+    public static final int POSITION_LESS = -1;
+
+    public static final int DEFAULT_RANGE_MAX = 100;
+    public static final int DEFAULT_RANGE_MIN = 0;
 
     private Range range;
 
@@ -27,7 +29,7 @@ public class Model {
     public Model() {
         randomSelectedValue = RandomGenerator.rand();
         statistics = new ArrayList<>();
-        range = new Range(RandomGenerator.RAND_MIN, RandomGenerator.RAND_MAX);
+        range = new Range(DEFAULT_RANGE_MIN, DEFAULT_RANGE_MAX);
     }
 
     public boolean checkRange(int userValue) {
@@ -43,13 +45,13 @@ public class Model {
         if (currentStep.getUserValue() > randomSelectedValue) {
             range.setEnd(currentStep.getUserValue() - 1);
 
-            currentStep.setPosition(LARGER);
+            currentStep.setPosition(POSITION_LARGER);
         } else if (currentStep.getUserValue() < randomSelectedValue) {
             range.setStart(currentStep.getUserValue() + 1);
 
-            currentStep.setPosition(LESS);
+            currentStep.setPosition(POSITION_LESS);
         } else {
-            currentStep.setPosition(EQUALS);
+            currentStep.setPosition(POSITION_EQUALS);
         }
 
         return currentStep.getPosition();
