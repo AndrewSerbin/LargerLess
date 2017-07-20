@@ -9,6 +9,8 @@ public class Step {
     private int userValue;
     private int position;
 
+    public Step() {}
+
     public Step(int number, int userValue, int position) {
         this.number = number;
         this.userValue = userValue;

@@ -21,10 +21,8 @@ public class Model {
     private ArrayList<Step> statistics;
 
     private int randomSelectedValue;
-    private int userValue;
 
-    // Position of user value relatively random selected value
-    private int position;
+    private Step currentStep;
 
     public Model() {
         randomSelectedValue = RandomGenerator.rand();
@@ -42,23 +40,23 @@ public class Model {
      * @return position
      */
     public int findPosistionAndSetRange() {
-        if (userValue > randomSelectedValue) {
-            range.setEnd(userValue - 1);
+        if (currentStep.getUserValue() > randomSelectedValue) {
+            range.setEnd(currentStep.getUserValue() - 1);
 
-            position = LARGER;
-        } else if (userValue < randomSelectedValue) {
-            range.setStart(userValue + 1);
+            currentStep.setPosition(LARGER);
+        } else if (currentStep.getUserValue() < randomSelectedValue) {
+            range.setStart(currentStep.getUserValue() + 1);
 
-            position = LESS;
+            currentStep.setPosition(LESS);
         } else {
-            position = EQUALS;
+            currentStep.setPosition(EQUALS);
         }
 
-        return position;
+        return currentStep.getPosition();
     }
 
-    public void addInformationInStatistics(int stepNumber) {
-        statistics.add(new Step(stepNumber, userValue, position));
+    public void addInformationInStatistics() {
+        statistics.add(currentStep);
     }
 
     public Range getRange() {
@@ -70,10 +68,18 @@ public class Model {
     }
 
     public void setUserValue(int userValue) {
-        this.userValue = userValue;
+        currentStep.setUserValue(userValue);
     }
 
     public int getPosition() {
-        return position;
+        return currentStep.getPosition();
+    }
+
+    public void setStepNumber(int stepNumber) {
+        currentStep.setNumber(stepNumber);
+    }
+
+    public void createCurrentStep() {
+        currentStep = new Step();
     }
 }

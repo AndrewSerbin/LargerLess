@@ -28,10 +28,13 @@ public class Controller {
 
         int stepNumber = 0;
         do {
+            model.createCurrentStep();
+
             model.setUserValue(inputIntValueWithScanner(sc));
+            model.setStepNumber(stepNumber);
             model.findPosistionAndSetRange();
 
-            model.addInformationInStatistics(stepNumber);
+            model.addInformationInStatistics();
             stepNumber++;
 
             switch (model.getPosition()) {
