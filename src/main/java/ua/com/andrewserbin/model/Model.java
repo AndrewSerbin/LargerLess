@@ -3,7 +3,6 @@ package ua.com.andrewserbin.model;
 import ua.com.andrewserbin.model.entities.Range;
 import ua.com.andrewserbin.model.entities.Step;
 import ua.com.andrewserbin.model.utils.RandomGenerator;
-
 import java.util.ArrayList;
 
 /**
@@ -11,29 +10,32 @@ import java.util.ArrayList;
  */
 public class Model {
 
-    public static final int POSITION_LARGER = 1;
-    public static final int POSITION_EQUALS = 0;
-    public static final int POSITION_LESS = -1;
-
-    public static final int DEFAULT_RANGE_MAX = 100;
-    public static final int DEFAULT_RANGE_MIN = 0;
-
     private Range range;
 
     private ArrayList<Step> statistics;
+    private Step currentStep;
 
     private int randomSelectedValue;
 
-    private Step currentStep;
-
     public Model() {
-        randomSelectedValue = RandomGenerator.rand();
         statistics = new ArrayList<>();
-        range = new Range(DEFAULT_RANGE_MIN, DEFAULT_RANGE_MAX);
     }
 
-    public boolean checkRange(int userValue) {
-        return range.check(userValue);
+    /**
+     * Checks position of user value relatively random selected value.
+     * Adds infromation in statistics.
+     * @param userValue
+     * @return flag game over or not
+     */
+    public boolean checkUserValuePosition(int userValue) {
+        createCurrentStep();
+
+        setUserValue(userValue);
+        setPosition(findPosistionAndSetRange());
+
+        addInformationInStatistics();
+
+        return getPosition() == Constants.POSITION_EQUALS;
     }
 
     /**
@@ -43,16 +45,20 @@ public class Model {
      */
     public int findPosistionAndSetRange() {
         if (currentStep.getUserValue() > randomSelectedValue) {
-            range.setEnd(currentStep.getUserValue() - 1);
+            range.setEnd(currentStep.getUserValue());
 
-            return POSITION_LARGER;
+            return Constants.POSITION_LARGER;
         } else if (currentStep.getUserValue() < randomSelectedValue) {
-            range.setStart(currentStep.getUserValue() + 1);
+            range.setStart(currentStep.getUserValue());
 
-            return POSITION_LESS;
+            return Constants.POSITION_LESS;
         } else {
-            return POSITION_EQUALS;
+            return Constants.POSITION_EQUALS;
         }
+    }
+
+    public void setRandomSelectedValue() {
+        randomSelectedValue = RandomGenerator.rand();;
     }
 
     public void addInformationInStatistics() {
@@ -61,6 +67,10 @@ public class Model {
 
     public Range getRange() {
         return range;
+    }
+
+    public void setRange() {
+        range = new Range(Constants.DEFAULT_RANGE_MIN, Constants.DEFAULT_RANGE_MAX);
     }
 
     public String getStatistics() {
@@ -77,10 +87,6 @@ public class Model {
 
     public void setPosition(int position) {
         currentStep.setPosition(position);
-    }
-
-    public void setStepNumber(int stepNumber) {
-        currentStep.setNumber(stepNumber);
     }
 
     public void createCurrentStep() {

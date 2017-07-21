@@ -14,7 +14,7 @@ public class Range {
     }
 
     public boolean check(int value) {
-        return (value >= start) && (value <= end);
+        return (value > start) && (value < end);
     }
 
     public int getStart() {

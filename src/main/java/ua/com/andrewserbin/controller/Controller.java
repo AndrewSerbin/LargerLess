@@ -1,6 +1,8 @@
 package ua.com.andrewserbin.controller;
 
+import ua.com.andrewserbin.model.Constants;
 import ua.com.andrewserbin.model.Model;
+import ua.com.andrewserbin.model.entities.Range;
 import ua.com.andrewserbin.view.View;
 import java.util.Scanner;
 
@@ -9,7 +11,6 @@ import java.util.Scanner;
  */
 public class Controller {
 
-    // Constructor
     Model model;
     View view;
 
@@ -23,39 +24,29 @@ public class Controller {
      * value position relatively random selected number. Sends
      * information to Model statistic. Sends to View value position.
      */
-    public void processUser(){
+    public void processUser() {
         Scanner sc = new Scanner(System.in);
 
-        int stepNumber = 0;
-        do {
-            model.createCurrentStep();
+        model.setRandomSelectedValue();
+        model.setRange();
 
-            model.setUserValue(inputIntValueWithScanner(sc));
-            model.setStepNumber(stepNumber);
-            model.setPosition(model.findPosistionAndSetRange());
-
-            model.addInformationInStatistics();
-            stepNumber++;
-
+        while (!model.checkUserValuePosition(inputIntValueWithScanner(sc, model.getRange()))) {
             switch (model.getPosition()) {
-                case Model.POSITION_LARGER:
+                case Constants.POSITION_LARGER:
                     view.printMessage(view.LARGER);
                     break;
 
-                case Model.POSITION_LESS:
+                case Constants.POSITION_LESS:
                     view.printMessage(view.LESS);
-                    break;
-
-                case Model.POSITION_EQUALS:
-                    view.printMessage(view.EQUALS + view.END_GAME + view.STATISTICS);
-                    view.printMessage(model.getStatistics());
                     break;
 
                 default:
                     view.printMessage(view.ERROR);
                     break;
             }
-        } while (model.getPosition() != model.POSITION_EQUALS);
+        }
+
+        view.printMessage(view.EQUALS, view.END_GAME, view.STATISTICS, model.getStatistics());
     }
 
     /**
@@ -65,23 +56,25 @@ public class Controller {
      * @param sc
      * @return user value
      */
-    public int inputIntValueWithScanner(Scanner sc) {
-        view.printMessage(view.RANGE + model.getRange() + view.INPUT_INT_DATA);
+    public int inputIntValueWithScanner(Scanner sc, Range range) {
+        view.printMessage(view.RANGE, model.getRange().toString(), view.INPUT_INT_DATA);
 
         int userValue;
         while (true) {
-            if (sc.hasNextInt()) {
-                userValue = sc.nextInt();
-
-                if (model.checkRange(userValue)) {
-                    break;
-                }
-            } else {
+            while (!sc.hasNextInt()) {
+                view.printMessage(view.WRONG_INPUT, view.RANGE, model.getRange().toString(),
+                        view.INPUT_INT_DATA);
                 sc.next();
             }
 
-            view.printMessage(view.WRONG_INPUT + view.RANGE + model.getRange() +
-                    view.INPUT_INT_DATA);
+            userValue = sc.nextInt();
+            if (range.check(userValue)) {
+                break;
+            } else {
+                view.printMessage(view.WRONG_INPUT, view.RANGE, model.getRange().toString(),
+                        view.INPUT_INT_DATA);
+            }
+
         }
 
         return userValue;

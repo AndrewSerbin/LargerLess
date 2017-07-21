@@ -5,24 +5,14 @@ package ua.com.andrewserbin.model.entities;
  */
 public class Step {
 
-    private int number;
     private int userValue;
     private int position;
 
     public Step() {}
 
-    public Step(int number, int userValue, int position) {
-        this.number = number;
+    public Step(int userValue, int position) {
         this.userValue = userValue;
         this.position = position;
-    }
-
-    public int getNumber() {
-        return number;
-    }
-
-    public void setNumber(int number) {
-        this.number = number;
     }
 
     public int getUserValue() {
@@ -43,7 +33,6 @@ public class Step {
 
     @Override
     public String toString() {
-        return "number=" + number + ", userValue=" + userValue +
-                ", position=" + position + "\n";
+        return "userValue=" + userValue + ", position=" + position;
     }
 }
