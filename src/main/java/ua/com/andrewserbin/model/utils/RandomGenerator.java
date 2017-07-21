@@ -9,6 +9,7 @@ public class RandomGenerator {
 
     /**
      * Generates random value in range from RAND_MIN + 1 to RAND_MAX - 1
+     * Test ignored.
      * @return random value
      */
     public static int rand() {
@@ -17,6 +18,7 @@ public class RandomGenerator {
 
     /**
      * Generates random value in range from min + 1 to max - 1
+     * Test ignored.
      * @param min
      * @param max
      * @return random value
