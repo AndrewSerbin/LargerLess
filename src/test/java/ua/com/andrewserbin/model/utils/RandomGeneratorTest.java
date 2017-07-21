@@ -12,7 +12,6 @@ public class RandomGeneratorTest {
 
     public static final int CYCLE_RANDOM = 1000;
 
-    @Ignore
     @Test
     public void randWithDefaultEndsTest() throws Exception {
         for (int i = 0; i < CYCLE_RANDOM; i++) {
@@ -23,7 +22,6 @@ public class RandomGeneratorTest {
         }
     }
 
-    @Ignore
     @Test
     public void randWithUserEndsTest() throws Exception {
         int min = 10;

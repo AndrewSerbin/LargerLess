@@ -22,6 +22,6 @@ public class RandomGenerator {
      * @return random value
      */
     public static int rand(int min, int max) {
-        return (min + 1) + (int) (Math.random() * (max - 1));
+        return (min + 1) + (int)(Math.random() * (max - min - 1));
     }
 }
