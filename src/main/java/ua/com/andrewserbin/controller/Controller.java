@@ -22,7 +22,7 @@ public class Controller {
     /**
      * Gets value from user. Sends request to Model about user
      * value position relatively random selected number. Sends
-     * information to Model statistic. Sends to View value position.
+     * to View value position.
      */
     public void processUser() {
         Scanner sc = new Scanner(System.in);
