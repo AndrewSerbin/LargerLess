@@ -61,6 +61,10 @@ public class Model {
         randomSelectedValue = RandomGenerator.rand();;
     }
 
+    public int getRandomSelectedValue() {
+        return randomSelectedValue;
+    }
+
     public void addInformationInStatistics() {
         statistics.add(currentStep);
     }
