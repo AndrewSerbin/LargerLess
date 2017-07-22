@@ -13,7 +13,7 @@ public class RandomGenerator {
      * @return random value
      */
     public static int rand() {
-        return (Constants.RAND_MIN + 1) + (int) (Math.random() * (Constants.RAND_MAX - 1));
+        return (Constants.RAND_MIN + 1) + (int)(Math.random() * (Constants.RAND_MAX - Constants.RAND_MIN - 1));
     }
 
     /**
