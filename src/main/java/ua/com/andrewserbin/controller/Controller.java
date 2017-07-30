@@ -35,20 +35,21 @@ public class Controller {
         while (!model.checkUserValuePosition(inputIntValueWithScanner(sc, model.getRange()))) {
             switch (model.getPosition()) {
                 case ModelConstants.POSITION_LARGER:
-                    view.printMessage(ViewConstants.LARGER);
+                    view.printMessage(getMessageFromBundle(ViewConstants.LARGER));
                     break;
 
                 case ModelConstants.POSITION_LESS:
-                    view.printMessage(ViewConstants.LESS);
+                    view.printMessage(getMessageFromBundle(ViewConstants.LESS));
                     break;
 
                 default:
-                    view.printMessage(ViewConstants.ERROR);
+                    view.printMessage(getMessageFromBundle(ViewConstants.ERROR));
                     break;
             }
         }
 
-        view.printMessage(ViewConstants.EQUALS, ViewConstants.END_GAME, ViewConstants.STATISTICS, model.getStatistics());
+        view.printMessage(getMessageFromBundle(ViewConstants.EQUALS), getMessageFromBundle(ViewConstants.END_GAME),
+                getMessageFromBundle(ViewConstants.STATISTICS), model.getStatistics());
     }
 
     /**
@@ -59,13 +60,17 @@ public class Controller {
      * @return user value
      */
     public int inputIntValueWithScanner(Scanner sc, Range range) {
-        view.printMessage(ViewConstants.RANGE, model.getRange().toString(), ViewConstants.INPUT_INT_DATA);
+        String rangeString = getMessageFromBundle(ViewConstants.RANGE);
+        String inputIntData = getMessageFromBundle(ViewConstants.INPUT_INT_DATA);
+        String wrongInput = getMessageFromBundle(ViewConstants.WRONG_INPUT);
+
+        view.printMessage(rangeString, model.getRange().toString(), inputIntData);
 
         int userValue;
         while (true) {
             while (!sc.hasNextInt()) {
-                view.printMessage(ViewConstants.WRONG_INPUT, ViewConstants.RANGE, model.getRange().toString(),
-                        ViewConstants.INPUT_INT_DATA);
+                view.printMessage(wrongInput, rangeString, model.getRange().toString(),
+                        inputIntData);
                 sc.next();
             }
 
@@ -73,12 +78,16 @@ public class Controller {
             if (range.isInRange(userValue)) {
                 break;
             } else {
-                view.printMessage(ViewConstants.WRONG_INPUT, ViewConstants.RANGE, model.getRange().toString(),
-                        ViewConstants.INPUT_INT_DATA);
+                view.printMessage(wrongInput, rangeString, model.getRange().toString(),
+                        inputIntData);
             }
 
         }
 
         return userValue;
+    }
+
+    private String getMessageFromBundle(String propertyName) {
+        return view.getBundle().getString(propertyName);
     }
 }

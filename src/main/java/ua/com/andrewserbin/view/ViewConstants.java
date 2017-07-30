@@ -6,17 +6,17 @@ package ua.com.andrewserbin.view;
 public interface ViewConstants {
 
     // Text's constants
-    String INPUT_INT_DATA = "Input INT value = ";
-    String WRONG_INPUT = "Wrong input! Repeat please! ";
+    String INPUT_INT_DATA = "input.int.data";
+    String WRONG_INPUT = "wrong.input";
 
-    String LARGER = "Larger";
-    String LESS = "Less";
-    String EQUALS = "Equals\n";
+    String LARGER = "larger";
+    String LESS = "less";
+    String EQUALS = "equals";
 
-    String RANGE = "Range: ";
+    String RANGE = "range";
 
-    String END_GAME = "This game is yours! Congratulations!\n";
-    String STATISTICS = "Statistics:\n";
+    String END_GAME = "end.game";
+    String STATISTICS = "statistics";
 
-    String ERROR = "Error!";
+    String ERROR = "error";
 }
