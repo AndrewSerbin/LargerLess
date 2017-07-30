@@ -1,9 +1,11 @@
 package ua.com.andrewserbin.controller;
 
-import ua.com.andrewserbin.model.Constants;
+import ua.com.andrewserbin.model.ModelConstants;
 import ua.com.andrewserbin.model.Model;
 import ua.com.andrewserbin.model.entities.Range;
 import ua.com.andrewserbin.view.View;
+import ua.com.andrewserbin.view.ViewConstants;
+
 import java.util.Scanner;
 
 /**
@@ -32,47 +34,47 @@ public class Controller {
 
         while (!model.checkUserValuePosition(inputIntValueWithScanner(sc, model.getRange()))) {
             switch (model.getPosition()) {
-                case Constants.POSITION_LARGER:
-                    view.printMessage(view.LARGER);
+                case ModelConstants.POSITION_LARGER:
+                    view.printMessage(ViewConstants.LARGER);
                     break;
 
-                case Constants.POSITION_LESS:
-                    view.printMessage(view.LESS);
+                case ModelConstants.POSITION_LESS:
+                    view.printMessage(ViewConstants.LESS);
                     break;
 
                 default:
-                    view.printMessage(view.ERROR);
+                    view.printMessage(ViewConstants.ERROR);
                     break;
             }
         }
 
-        view.printMessage(view.EQUALS, view.END_GAME, view.STATISTICS, model.getStatistics());
+        view.printMessage(ViewConstants.EQUALS, ViewConstants.END_GAME, ViewConstants.STATISTICS, model.getStatistics());
     }
 
     /**
-     * Gets data from user. Checks inputed data for type and range.
+     * Gets data from user. Checks inputted data for type and range.
      * If data isn't correct, sends an error message to View. Input will be
      * repeated until the validation is completed.
      * @param sc
      * @return user value
      */
     public int inputIntValueWithScanner(Scanner sc, Range range) {
-        view.printMessage(view.RANGE, model.getRange().toString(), view.INPUT_INT_DATA);
+        view.printMessage(ViewConstants.RANGE, model.getRange().toString(), ViewConstants.INPUT_INT_DATA);
 
         int userValue;
         while (true) {
             while (!sc.hasNextInt()) {
-                view.printMessage(view.WRONG_INPUT, view.RANGE, model.getRange().toString(),
-                        view.INPUT_INT_DATA);
+                view.printMessage(ViewConstants.WRONG_INPUT, ViewConstants.RANGE, model.getRange().toString(),
+                        ViewConstants.INPUT_INT_DATA);
                 sc.next();
             }
 
             userValue = sc.nextInt();
-            if (range.check(userValue)) {
+            if (range.isInRange(userValue)) {
                 break;
             } else {
-                view.printMessage(view.WRONG_INPUT, view.RANGE, model.getRange().toString(),
-                        view.INPUT_INT_DATA);
+                view.printMessage(ViewConstants.WRONG_INPUT, ViewConstants.RANGE, model.getRange().toString(),
+                        ViewConstants.INPUT_INT_DATA);
             }
 
         }
