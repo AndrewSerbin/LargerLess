@@ -25,7 +25,7 @@ public class ModelTest {
         model.createCurrentStep();
         model.setUserValue(userValue);
 
-        assertEquals(Constants.POSITION_LARGER, model.findPosistionAndSetRange());
+        assertEquals(ModelConstants.POSITION_LARGER, model.findPosistionAndSetRange());
     }
 
     @Test
@@ -35,7 +35,7 @@ public class ModelTest {
         model.createCurrentStep();
         model.setUserValue(userValue);
 
-        assertEquals(Constants.POSITION_LESS, model.findPosistionAndSetRange());
+        assertEquals(ModelConstants.POSITION_LESS, model.findPosistionAndSetRange());
     }
 
     @Test
@@ -45,7 +45,7 @@ public class ModelTest {
         model.createCurrentStep();
         model.setUserValue(userValue);
 
-        assertEquals(Constants.POSITION_EQUALS, model.findPosistionAndSetRange());
+        assertEquals(ModelConstants.POSITION_EQUALS, model.findPosistionAndSetRange());
     }
 
     @Test
