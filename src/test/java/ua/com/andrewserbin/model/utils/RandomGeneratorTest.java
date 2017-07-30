@@ -2,7 +2,7 @@ package ua.com.andrewserbin.model.utils;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import ua.com.andrewserbin.model.Constants;
+import ua.com.andrewserbin.model.ModelConstants;
 import static org.junit.Assert.*;
 
 /**
@@ -18,7 +18,7 @@ public class RandomGeneratorTest {
         for (int i = 0; i < CYCLE_RANDOM; i++) {
             int res = RandomGenerator.rand();
 
-            boolean isEndsSelected = (res >= Constants.RAND_MAX) || (res <= Constants.RAND_MIN);
+            boolean isEndsSelected = (res >= ModelConstants.RAND_MAX) || (res <= ModelConstants.RAND_MIN);
             assertFalse(isEndsSelected);
         }
     }
@@ -44,7 +44,7 @@ public class RandomGeneratorTest {
         for (int i = 0; i < CYCLE_RANDOM; i++) {
             int res = RandomGenerator.rand();
 
-            isFirstNumberSelected = res == (Constants.RAND_MIN + 1);
+            isFirstNumberSelected = res == (ModelConstants.RAND_MIN + 1);
             if (isFirstNumberSelected) {
                 break;
             }
@@ -59,7 +59,7 @@ public class RandomGeneratorTest {
         for (int i = 0; i < CYCLE_RANDOM; i++) {
             int res = RandomGenerator.rand();
 
-            isLastNumberSelected = res == (Constants.RAND_MAX - 1);
+            isLastNumberSelected = res == (ModelConstants.RAND_MAX - 1);
             if (isLastNumberSelected) {
                 break;
             }
@@ -74,7 +74,7 @@ public class RandomGeneratorTest {
         for (int i = 0; i < CYCLE_RANDOM; i++) {
             int res = RandomGenerator.rand();
 
-            isNumberInCenterSelected = res == (Constants.RAND_MIN + Constants.RAND_MAX / 2);
+            isNumberInCenterSelected = res == (ModelConstants.RAND_MIN + ModelConstants.RAND_MAX / 2);
             if (isNumberInCenterSelected) {
                 break;
             }

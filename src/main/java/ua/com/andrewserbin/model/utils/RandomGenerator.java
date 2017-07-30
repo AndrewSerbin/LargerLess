@@ -1,6 +1,6 @@
 package ua.com.andrewserbin.model.utils;
 
-import ua.com.andrewserbin.model.Constants;
+import ua.com.andrewserbin.model.ModelConstants;
 
 /**
  * Created by admin on 20.07.2017.
@@ -13,7 +13,7 @@ public class RandomGenerator {
      * @return random value
      */
     public static int rand() {
-        return (Constants.RAND_MIN + 1) + (int)(Math.random() * (Constants.RAND_MAX - Constants.RAND_MIN - 1));
+        return (ModelConstants.RAND_MIN + 1) + (int)(Math.random() * (ModelConstants.RAND_MAX - ModelConstants.RAND_MIN - 1));
     }
 
     /**
