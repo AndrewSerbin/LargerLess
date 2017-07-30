@@ -13,7 +13,7 @@ public class Range {
         this.end = end;
     }
 
-    public boolean check(int value) {
+    public boolean isInRange(int value) {
         return (value > start) && (value < end);
     }
 

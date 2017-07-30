@@ -4,7 +4,7 @@ package ua.com.andrewserbin.model.entities;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import ua.com.andrewserbin.model.Constants;
+import ua.com.andrewserbin.model.ModelConstants;
 
 /**
  * Created by admin on 21.07.2017.
@@ -15,16 +15,16 @@ public class RangeTest {
 
     @Before
     public void initRange() {
-        range = new Range(Constants.DEFAULT_RANGE_MIN, Constants.DEFAULT_RANGE_MAX);
+        range = new Range(ModelConstants.DEFAULT_RANGE_MIN, ModelConstants.DEFAULT_RANGE_MAX);
     }
 
     @Test
     public void testCheckInRange() {
-        Assert.assertTrue(range.check(5));
+        Assert.assertTrue(range.isInRange(5));
     }
 
     @Test
     public void testCheckOutOfRange() {
-        Assert.assertFalse(range.check(110));
+        Assert.assertFalse(range.isInRange(110));
     }
 }
