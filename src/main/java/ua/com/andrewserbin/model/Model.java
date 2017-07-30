@@ -35,7 +35,7 @@ public class Model {
 
         addInformationInStatistics();
 
-        return getPosition() == Constants.POSITION_EQUALS;
+        return getPosition() == ModelConstants.POSITION_EQUALS;
     }
 
     /**
@@ -47,13 +47,13 @@ public class Model {
         if (currentStep.getUserValue() > randomSelectedValue) {
             range.setEnd(currentStep.getUserValue());
 
-            return Constants.POSITION_LARGER;
+            return ModelConstants.POSITION_LARGER;
         } else if (currentStep.getUserValue() < randomSelectedValue) {
             range.setStart(currentStep.getUserValue());
 
-            return Constants.POSITION_LESS;
+            return ModelConstants.POSITION_LESS;
         } else {
-            return Constants.POSITION_EQUALS;
+            return ModelConstants.POSITION_EQUALS;
         }
     }
 
@@ -74,7 +74,7 @@ public class Model {
     }
 
     public void setRange() {
-        range = new Range(Constants.DEFAULT_RANGE_MIN, Constants.DEFAULT_RANGE_MAX);
+        range = new Range(ModelConstants.DEFAULT_RANGE_MIN, ModelConstants.DEFAULT_RANGE_MAX);
     }
 
     public String getStatistics() {

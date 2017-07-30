@@ -3,7 +3,7 @@ package ua.com.andrewserbin.model;
 /**
  * Created by admin on 21.07.2017.
  */
-public interface Constants {
+public interface ModelConstants {
 
     int POSITION_LARGER = 1;
     int POSITION_EQUALS = 0;
