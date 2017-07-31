@@ -1,5 +1,6 @@
 package ua.com.andrewserbin.controller;
 
+import ua.com.andrewserbin.controller.util.NoSuchPositionException;
 import ua.com.andrewserbin.model.ModelConstants;
 import ua.com.andrewserbin.model.Model;
 import ua.com.andrewserbin.model.entities.Range;
@@ -43,8 +44,7 @@ public class Controller {
                     break;
 
                 default:
-                    view.printMessage(getMessageFromBundle(ViewConstants.ERROR));
-                    break;
+                    throw new NoSuchPositionException(model.getPosition());
             }
         }
 
